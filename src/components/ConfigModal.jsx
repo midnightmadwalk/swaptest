@@ -1,5 +1,7 @@
-export default function ConfigModal(props){
-    return (
+import React from 'react';
+
+const ConfigModal = props => {
+  return(
     <div className="modaly" onClick={props.onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-body">
@@ -37,11 +39,11 @@ export default function ConfigModal(props){
               <span>minutes</span>
             </div>
           </div>
-          <button className="set" onClick={props.onClose}>set</button>
         </div>
       </div>
     </div>
-    )
-
-
+  )
 }
+
+
+export default ConfigModal
