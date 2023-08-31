@@ -2,30 +2,31 @@ const { AlphaRouter } = require('@uniswap/smart-order-router')
 const { Token, CurrencyAmount, TradeType, Percent } = require('@uniswap/sdk-core')
 const { ethers, BigNumber } = require('ethers')
 const JSBI = require('jsbi')
-const ERC20ABI = require('../abi.json')
+const ERC20ABI = require('./abi.json')
 
 const V3_SWAP_ROUTER_ADDRESS = '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'
+const REACT_APP_PULSECHAIN_TESTNET = process.env.REACT_APP_PULSECHAIN_TESTNET
 
-const chainId = 3
+const chainId = 369
 
-const web3Provider = new ethers.providers.JsonRpcProvider('https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161')
+const web3Provider = new ethers.providers.JsonRpcProvider(REACT_APP_PULSECHAIN_TESTNET)
 const router = new AlphaRouter({ chainId: chainId, provider: web3Provider })
 
 const name0 = 'Wrapped Ether'
 const symbol0 = 'WETH'
 const decimals0 = 18
-const address0 = '0x6B175474E89094C44Da98b954EedeAC495271d0F'
+const address0 = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
 
-const name1 = 'Dai Stablecoin'
-const symbol1 = 'DAI'
+const name1 = 'TornadoCash'
+const symbol1 = 'TORN'
 const decimals1 = 18
-const address1 = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'
+const address1 = '0x77777FeDdddFfC19Ff86DB637967013e6C6A116C'
 
 const WETH = new Token(chainId, address0, decimals0, symbol0, name0)
-const DAI = new Token(chainId, address1, decimals1, symbol1, name1)
+const UNI = new Token(chainId, address1, decimals1, symbol1, name1)
 
 export const getWethContract = () => new ethers.Contract(address0, ERC20ABI, web3Provider)
-export const getDaiContract = () => new ethers.Contract(address1, ERC20ABI, web3Provider)
+export const getUniContract = () => new ethers.Contract(address1, ERC20ABI, web3Provider)
 
 export const getPrice = async (inputAmount, slippageAmount, deadline, walletAddress) => {
   const percentSlippage = new Percent(slippageAmount, 100)
@@ -34,7 +35,7 @@ export const getPrice = async (inputAmount, slippageAmount, deadline, walletAddr
 
   const route = await router.route(
     currencyAmount,
-    DAI,
+    UNI,
     TradeType.EXACT_INPUT,
     {
       recipient: walletAddress,
