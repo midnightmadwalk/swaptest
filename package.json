@@ -1,4 +1,8 @@
-"dependencies": {
+{
+  "name": "uniswap-clone",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
     "@uniswap/sdk": "^3.0.3",
     "@uniswap/sdk-core": "^4.0.6",
     "@uniswap/smart-order-router": "^3.16.20",
@@ -8,4 +12,36 @@
     "jsbi": "^3.2.5",
     "react-bootstrap-icons": "^1.10.3",
     "react-spinners": "^0.13.8"
-  }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
